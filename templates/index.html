@@ -2,24 +2,39 @@
 <html lang="uk">
     <head>
         <title>Список справ</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+            rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
         <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     </head>
     <body>
         <div class="box">
             <div>
-                <h3>Список витрат</h3>
-                <form action="/add" method="post" enctype="multipart/form-data">
-                    <input type="text" name="title" placeholder="Нові витрати" required>
-                    <button type="submit" >Додати</button>
+                <h3 class="Expenses-list">Список витрат</h3>
+                <form action="/add" method="post">
+                    <div class="add-expenses-name">
+                        <label for="title">Введіть назву витрат: </label>
+                        <input type="text" name="title" id="title" placeholder="Нові витрати" required>
+                    </div>
+                    <div class="add-expenses-value">
+                        <label for="value">Введіть суму витрат: </label>
+                        <input type="number" name="value" id="value" placeholder="Сума витрат" required />
+                    </div>
+                    <!-- <div class="add-expenses-date">
+                        <label for="date">Введіть дату: </label>
+                        <input type="date" name="date" id="date" placeholder="Дата" required />
+                    </div> -->
+                    <button type="submit">Додати</button>
                 </form>
                 <ul>
                     {% for expense in expenses %}
                         <li>
-                            {{ expense.title }}
+                            {{ expense.title }} - {{ expense.value }} 
                             <a href="{{ url_for('edit_expense', expense_id=expense.id) }}" class="edit"><i class="fa-solid fa-pen-to-square"></i></a>
                             <a href="{{ url_for('delete_expense', expense_id=expense.id) }}" class="trash"><i class="fa-solid fa-trash-can"></i></a>
-                            {{ expense.value }}
                         </li>
                     {% endfor %}
                 </ul>

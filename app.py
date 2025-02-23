@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
-from werkzeug.utils import secure_filename
+# from werkzeug.utils import secure_filename
 import os
-
+from datetime import datetime, timezone, date
 from models import db, Expenses
 from config import Config
 
@@ -14,8 +14,8 @@ with app.app_context():
     db.create_all()
 
 
-def allowed_file(filename):
-    return '.' in filename and filename.rsplit('.', 1)[1].lower() in Config.ALLOWED_EXTENSIONS
+# def allowed_file(filename):
+#     return '.' in filename and filename.rsplit('.', 1)[1].lower() in Config.ALLOWED_EXTENSIONS
 
 
 @app.route("/")
@@ -25,9 +25,11 @@ def index():
 
 @app.route("/add", methods=["POST"])
 def add_expense():
-    title = request.form.get("title", "").strip()
-    if title:
-        new_expense = Expenses(title=title)
+    value = request.form['value'].strip()
+    title = request.form['title'].strip()
+
+    if title and value:
+        new_expense = Expenses(title=title, value=value)
         db.session.add(new_expense)
         db.session.commit()
     return redirect(url_for("index"))
@@ -53,7 +55,8 @@ def edit_expense(expense_id):
     expense = Expenses.query.get(expense_id)
     if expense and request.method == "POST":
         expense.title = request.form.get("title", "").strip()
-        if expense.title:
+        expense.value = request.form.get("value", "").strip()
+        if expense.title and expense.value:
             db.session.commit()
             return redirect(url_for("index"))
     return render_template("edit.html", expense=expense)

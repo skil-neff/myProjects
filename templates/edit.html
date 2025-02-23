@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Редагувати витрати</title>
+    <title>Список справ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles-edit.css') }}">
+</head>
+
+<body>
+    <div class="box">
+        <div>
+            <h3 class="Change-expenses-list">Редагувати витрати</h3>
+            <form method="post">
+                <div class="change-expenses-name">
+                    <label for="title">Змініть назву витрат: </label>
+                    <input type="text" name="title" id="title" placeholder="Назва витрат" value="{{ expense.title }}" required>
+                </div>
+                <div class="change-expenses-value">
+                    <label for="value">Змініть суму витрат: </label>
+                    <input type="number" name="value" id="value" placeholder="Сума витрат" value="{{ expense.value }}" required />
+                </div>
+                <button type="submit" class="save-changes">Зберегти зміни</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+body {
+    font-family: "Inter";
+    font-weight: 400;
+    padding: 0;
+    margin: 0 auto;
+    color: #fff;
+    background-color: black;
+}
+
+input {
+    font-size: 30px;
+    height: 30px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.change-expenses-name {
+    font-size: 30px;
+    padding-bottom: 20px;
+}
+
+.change-expenses-value {
+    font-size: 30px;
+    padding-bottom: 20px;
+}
+
+.box {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.Change-expenses-list {
+    font-size: 50px;
+    color: rgb(0, 221, 255);
+}
+
+.save-changes {
+    font-size: 30px;
+    color:blue;
+}
+
+.save-changes:hover {
+    cursor: pointer;
+}
