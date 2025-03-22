@@ -35,11 +35,21 @@ def index():
     expenses = Expenses.query.all()
     return render_template("index.html", expenses=expenses)
 
+# @app.route("/edit_expense")
+# def edit_expense():
+#     return "as"
+# @app.route("/delete_expense")
+# def delete_expense():
+#     return "asdel"
+
 @app.route("/expense/<int:id>")
 def expense_detail(id):
     expense = Expenses.query.get_or_404(id)
     return render_template("expense.html", expense=expense)
-
+@app.route("/delete/<int:id>")
+def delete_expense(id):
+    expense = Expenses.query.get_or_404(id)
+    return render_template("expense.html", expense=expense)
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -88,7 +98,7 @@ def login():
 @app.route("/logout")
 def logout():
     logout_user()
-    return redirect(url_for("home"))
+    return redirect(url_for("index"))
 
 
 if __name__ == "__main__":

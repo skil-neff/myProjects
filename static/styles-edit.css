@@ -46,3 +46,7 @@ form {
 .save-changes:hover {
     cursor: pointer;
 }
+
+.back-to-main {
+    color: yellow;
+}

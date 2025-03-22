@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="uk">
     <head>
-        <title>Список справ</title>
+        <title>Список витрат</title>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link
@@ -13,28 +13,41 @@
     <body>
         <div class="box">
             <div>
+                <div class="header">
+                    <h1>Витрати</h1>
+                        <div class="links">
+                            {% if current_user.is_authenticated %}
+                                <span>Вітаю, {{ current_user.username }}!</span> |
+                                <a href="{{ url_for('admin.index') }}">⚙️ Адмінка</a> |
+                                <a href="{{ url_for('logout') }}">🚪 Вийти</a>
+                            {% else %}
+                                <a href="{{ url_for('login') }}">👤 Увійти</a> |
+                                <a href="{{ url_for('register') }}">📝 Реєстрація</a>
+                            {% endif %}
+                        </div>
+                </div>
                 <h3 class="Expenses-list">Список витрат</h3>
-                <form action="/add" method="post">
-                    <div class="add-expenses-name">
-                        <label for="title">Введіть назву витрат: </label>
-                        <input type="text" name="title" id="title" placeholder="Нові витрати" required>
-                    </div>
-                    <div class="add-expenses-value">
-                        <label for="value">Введіть суму витрат: </label>
-                        <input type="number" name="value" id="value" placeholder="Сума витрат" required />
-                    </div>
+<!--                <form action="/add" method="post">-->
+<!--                    <div class="add-expenses-name">-->
+<!--                        <label for="title">Введіть назву витрат: </label>-->
+<!--                        <input type="text" name="title" id="title" placeholder="Нові витрати" required>-->
+<!--                    </div>-->
+<!--                    <div class="add-expenses-value">-->
+<!--                        <label for="value">Введіть суму витрат: </label>-->
+<!--                        <input type="number" name="value" id="value" placeholder="Сума витрат" required />-->
+<!--                    </div>-->
                     <!-- <div class="add-expenses-date">
                         <label for="date">Введіть дату: </label>
                         <input type="date" name="date" id="date" placeholder="Дата" required />
                     </div> -->
-                    <button type="submit">Додати</button>
-                </form>
+<!--                    <button type="submit">Додати</button>-->
+<!--                </form>-->
                 <ul>
                     {% for expense in expenses %}
                         <li>
                             {{ expense.title }} - {{ expense.value }} 
-                            <a href="{{ url_for('edit_expense', expense_id=expense.id) }}" class="edit"><i class="fa-solid fa-pen-to-square"></i></a>
-                            <a href="{{ url_for('delete_expense', expense_id=expense.id) }}" class="trash"><i class="fa-solid fa-trash-can"></i></a>
+                            <a href="{{ url_for('expense_detail', id=expense.id) }}" class="edit"><i class="fa-solid fa-circle-info"></i></a>
+<!--                            <a href="{{ url_for('delete_expense', id=expense.id) }}" class="trash"><i class="fa-solid fa-trash-can"></i></a>-->
                         </li>
                     {% endfor %}
                 </ul>

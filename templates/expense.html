@@ -17,11 +17,11 @@
         <div>
             <h1>{{ expense.title }}</h1>
             <img src="{{ url_for('static', filename=('uploads/' + expense.picture) if expense.picture else 'nopicture.jpg') }}"
-                alt="{{ product.name }}" style="max-width: 300px;">
+                alt="{{ expense.name }}" style="max-width: 300px;">
             <p><strong>Категорія:</strong> Без категорії</p>
             <p><strong>Опис:</strong> {{ expense.description or 'Опис не наданий' }}</p>
             <p><strong>Сума:</strong> {{ expense.value }} грн</p>
-            <a href="{{ url_for('home') }}">Назад на головну</a>
+            <a href="{{ url_for('index') }}" class="back-to-main">Назад на головну</a>
         </div>
     </div>
 </body>

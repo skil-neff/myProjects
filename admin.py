@@ -38,13 +38,14 @@ class UserAdmin(AdminModelView):
 
 # Обираємо категорію для товару
 class ExpensesAdmin(AdminModelView):
-    column_list = ("title", "value")
+    column_list = ("title", "value", "date")
     column_labels = {
         "title": "Назва",
         "value": "Сума",
         "description": "Опис витрати",
+        "date": "Дата додавання",
     }
-    form_columns = ["title", "value", "picture", "description"]
+    form_columns = ["title", "value", "picture", "description", "date"]
     form_overrides = {"picture": FileUploadField}
     form_args = {
         "picture": {
@@ -52,17 +53,22 @@ class ExpensesAdmin(AdminModelView):
             "base_path": Config.UPLOAD_FOLDER,
             "allowed_extensions": {"png", "jpg", "jpeg", "gif"},
         },
+        "event_date": {
+            "format": "%Y-%m-%d %H:%M:%S",
+            "label": "Дата додавання",
+            "description": "Введіть дату та чат у форматі YYYY-MM-DD HH:MM:SS"
+        }
     }
 
 
 # Створюємо об'єкт адмінки
 admin = Admin(
-    name="Адмінка магазину",
+    name="Адмінка витрат",
     template_mode="bootstrap4",
     index_view=MyAdminIndexView(),
 )
 
-admin.add_link(MenuLink(name="🏠 Перейти до магазину", url="/"))
+admin.add_link(MenuLink(name="🏠 Повернутися до витрат", url="/"))
 admin.add_link(MenuLink(name="🚪 Вийти", url="/logout"))
 # Додаємо моделі в адмінку
 admin.add_view(ExpensesAdmin(Expenses, db.session, name="Витрати"))

@@ -7,6 +7,10 @@ body {
     background-color: black;
 }
 
+.links a {
+    color: #03e8fc;
+}
+
 label {
     font-size: 30px;
 }
@@ -72,4 +76,14 @@ button:hover {
 .error {
     color: red;
     font-size: 0.9em;
+}
+
+.a-register {
+    font-size: 20px;
+    color: #73fc03;
+    text-decoration: none;
+}
+
+.edit {
+    color: #fff;
 }

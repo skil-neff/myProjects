@@ -1,4 +1,4 @@
-from datetime import datetime, timezone, date
+from datetime import datetime
 from flask_login import UserMixin
 from extensions import db
 
@@ -10,7 +10,7 @@ class Expenses(db.Model):
     value = db.Column(db.Integer)
     description = db.Column(db.Text, nullable=True)
     picture = db.Column(db.String(255))
-    # date = db.Column(db.Date)
+    date = db.Column(db.DateTime, nullable=False, default=datetime.now())
     # date = db.Column(db.Date, default=datetime.utcnow().date)
     # date = db.Column(db.String(12) , date =datetime.utcnow)
     
