@@ -9,8 +9,5 @@ class Config:
 
     UPLOAD_FOLDER = os.path.join(BASE_DIR, 'static', 'uploads')
     MAX_CONTENT_LENGTH = 100 * 1024 * 1024  # 100 MB
-    ALLOWED_EXTENSIONS = {
-        'png', 'jpg', 'jpeg', 'gif',  # Зображення
-        'mp4', 'avi', 'mov', 'mkv',  # Відео
-        'mp3', 'wav', 'ogg', 'flac'  # Аудио
-    }
+    ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+    

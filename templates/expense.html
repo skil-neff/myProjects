@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Редагувати витрати</title>
+    <title>{{ expense.title }}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles-edit.css') }}">
+</head>
+
+<body>
+    <div class="box">
+        <div>
+            <h1>{{ expense.title }}</h1>
+            <img src="{{ url_for('static', filename=('uploads/' + expense.picture) if expense.picture else 'nopicture.jpg') }}"
+                alt="{{ product.name }}" style="max-width: 300px;">
+            <p><strong>Категорія:</strong> Без категорії</p>
+            <p><strong>Опис:</strong> {{ expense.description or 'Опис не наданий' }}</p>
+            <p><strong>Сума:</strong> {{ expense.value }} грн</p>
+            <a href="{{ url_for('home') }}">Назад на головну</a>
+        </div>
+    </div>
+</body>
+
+</html>
