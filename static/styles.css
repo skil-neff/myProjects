@@ -2,9 +2,9 @@ body {
     font-family: "Inter";
     font-weight: 400;
     padding: 0;
-    margin: 0 auto;
+    margin: 0;
     color: #fff;
-    background-color: black;
+    background-color: #152536;
 }
 
 .links a {
@@ -28,7 +28,7 @@ li {
 .box {
     display: flex;
     justify-content: center;
-    margin: 0 auto;
+    align-items: center;
 } 
 
 .Expenses-list {
@@ -86,4 +86,69 @@ button:hover {
 
 .edit {
     color: #fff;
+}
+
+/* Стилі для головної сторінки (таблиці) */
+table {
+    min-width: 800px;
+    margin: 20px 0;
+    border-collapse: collapse;
+    background-color: #fff;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+    font-size: 16px;
+    color: #333;
+    text-align: center;
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #cbc2c2;
+}
+
+.edit i {
+    color: #1e3050;
+}
+
+.edit {
+    /* color: #4CAF50; */
+    font-size: 20px;
+}
+
+.total {
+    font-weight: bold;
+    font-size: 18px;
+    background-color: #152536;
+    color: #333;
+    border-top: 5px solid #ff9900;
+}
+
+.total th {
+    background-color: rgb(255, 255, 0);
+    color: #152536;
+    font-size: 22px;
+}
+
+.total:hover {
+    background-color: #fff;
+}
+
+.total td {
+    color: #4CAF50;
+    font-size: 22px;
+    font-weight: bold;
 }

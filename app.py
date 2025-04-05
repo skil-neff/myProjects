@@ -33,21 +33,11 @@ def load_user(user_id):
 @app.route("/")
 def index():
     expenses = Expenses.query.all()
-    return render_template("index.html", expenses=expenses)
-
-# @app.route("/edit_expense")
-# def edit_expense():
-#     return "as"
-# @app.route("/delete_expense")
-# def delete_expense():
-#     return "asdel"
+    total_sum = sum(expense.value for expense in expenses)
+    return render_template("index.html", expenses=expenses, total_sum=total_sum)
 
 @app.route("/expense/<int:id>")
 def expense_detail(id):
-    expense = Expenses.query.get_or_404(id)
-    return render_template("expense.html", expense=expense)
-@app.route("/delete/<int:id>")
-def delete_expense(id):
     expense = Expenses.query.get_or_404(id)
     return render_template("expense.html", expense=expense)
 

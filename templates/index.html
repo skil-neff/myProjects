@@ -27,30 +27,29 @@
                         </div>
                 </div>
                 <h3 class="Expenses-list">Список витрат</h3>
-<!--                <form action="/add" method="post">-->
-<!--                    <div class="add-expenses-name">-->
-<!--                        <label for="title">Введіть назву витрат: </label>-->
-<!--                        <input type="text" name="title" id="title" placeholder="Нові витрати" required>-->
-<!--                    </div>-->
-<!--                    <div class="add-expenses-value">-->
-<!--                        <label for="value">Введіть суму витрат: </label>-->
-<!--                        <input type="number" name="value" id="value" placeholder="Сума витрат" required />-->
-<!--                    </div>-->
-                    <!-- <div class="add-expenses-date">
-                        <label for="date">Введіть дату: </label>
-                        <input type="date" name="date" id="date" placeholder="Дата" required />
-                    </div> -->
-<!--                    <button type="submit">Додати</button>-->
-<!--                </form>-->
-                <ul>
+                <table>
+                    <tr>
+                        <th>Категорія</th>
+                        <th>Назва</th>
+                        <th>Сума</th>
+                        <th>Дата</th>
+                        <th>Деталі</th>
+                    </tr>
                     {% for expense in expenses %}
-                        <li>
-                            {{ expense.title }} - {{ expense.value }} 
-                            <a href="{{ url_for('expense_detail', id=expense.id) }}" class="edit"><i class="fa-solid fa-circle-info"></i></a>
-<!--                            <a href="{{ url_for('delete_expense', id=expense.id) }}" class="trash"><i class="fa-solid fa-trash-can"></i></a>-->
-                        </li>
+                    <tr>
+                        <td>{{ expense.category }}</td>
+                        <td>{{ expense.title }}</td>
+                        <td>{{ expense.value }}</td>
+                        <td>{{ expense.date.strftime('%Y-%m-%d') }}</td>
+                        <td><a href="{{ url_for('expense_detail', id=expense.id) }}" class="edit"><i class="fa-solid fa-circle-info"></i></a></td>
+                    </tr>
                     {% endfor %}
-                </ul>
+                    <div>
+                    <tr class="total">
+                        <th>Загальна сума:</th> 
+                        <td>{{ total_sum }}</td><td></td><td></td>
+                    </tr>
+                </table>
             </div>
         </div>
     </body>
